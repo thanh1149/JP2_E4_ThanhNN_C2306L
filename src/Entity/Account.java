@@ -47,6 +47,10 @@ public class Account {
         this.currency = currency;
     }
 
+    public Account getAccount(Account a){
+        Account account = a;
+        return account;
+    }
     @Override
     public String toString() {
         return "Account{" +

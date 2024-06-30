@@ -37,6 +37,10 @@ public class Customer {
         this.phone = phone;
     }
 
+    public Customer getCustomer(Customer c){
+        Customer cs = c;
+        return cs;
+    }
     @Override
     public String toString() {
         return "Customer{" +
