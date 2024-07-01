@@ -2,11 +2,13 @@ package src;
 
 import src.Entity.*;
 import src.Service.AccountService;
+import src.Service.BankService;
 import src.Service.CustomerService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
+        int choice = 0;
 
         List<Customer> customerList = new ArrayList<>();
         List<Account> accountList = new ArrayList<>();
@@ -31,7 +34,11 @@ public class Main {
 
         CustomerService customerService = new CustomerService(customersPath);
         AccountService accountService = new AccountService(customerService,accountsPath);
+        BankService bankService = new BankService(accountService,transactionList);
 
+        BankService.accountList = accountList;
+        BankService.transactionList = transactionList;
+        BankService.customerList = customerList;
 
         // read customer file
         try{
@@ -101,6 +108,30 @@ public class Main {
             e.printStackTrace();
         }
 
+        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        do{
+            System.out.println("1.Withdraw money.");
+            System.out.println("2.Display account balance.");
+            System.out.println("3.Display transaction in specific time.");
+            System.out.println("4.Exit.");
+            System.out.print("Your choice: ");
+            try{
+                String choiceStr  = bufferedReader.readLine();
+                choice = Integer.parseInt(choiceStr);
+                switch (choice){
+                    case 1:
+                        bankService.withdraw(0,0);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
+                }
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }while(choice!=4);
 
     }
 }

@@ -52,6 +52,10 @@ public class AccountService implements IBankService {
         return LocalDateTime.parse(date, formatter);
     }
 
+    public boolean checkBalance(Account account, double amount){
+        return account.getBalance() >= amount;
+    }
+
     @Override
     public Optional findByID(int id) {
         return Optional.empty();
