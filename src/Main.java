@@ -123,8 +123,10 @@ public class Main {
                         bankService.withdraw(0,0);
                         break;
                     case 2:
+                        bankService.getAccBalance(0);
                         break;
                     case 3:
+                        bankService.getTransactionByDate();
                         break;
 
                 }
